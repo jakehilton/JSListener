@@ -4,7 +4,7 @@ function JSListener() {
     listener.addListener = function(s_function,s_listenFor)
     {
         if(!this[s_listenFor])
-            this[s_listenFor]=new Array();
+            this[s_listenFor]=[];
 
         if(!s_function)
         {
