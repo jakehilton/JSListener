@@ -24,4 +24,6 @@ jsListener.addListener(callMeAlso, "someEventMessage");
 //call the listening functions
 jsListener.callListeners("someEventMessage", "some message");
 
+//later remove the listener
+jsListener.removeListener(callMe, "someEventMessage");
 ```
