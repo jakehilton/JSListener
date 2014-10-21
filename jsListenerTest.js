@@ -13,14 +13,14 @@ function callMeAlso(msg) {
 
 //setup listener
 var jsListener = new JSListener();
-jsListener.addListener(callMe, "someEventMessage");
-jsListener.addListener(callMeAlso, "someEventMessage");
+jsListener.addListener("someEventMessage", callMe);
+jsListener.addListener("someEventMessage", callMeAlso);
 
 //call the listening functions
 jsListener.callListeners("someEventMessage", "some message");
 
 //later remove the listener
-jsListener.removeListener(callMe, "someEventMessage");
+jsListener.removeListener("someEventMessage", callMe);
 
 //test for failures
 

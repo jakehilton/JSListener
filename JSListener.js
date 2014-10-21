@@ -23,7 +23,7 @@ function JSListener() {
         callObj: {}
     };
 
-    listener.addListener = function (s_function, s_listenFor) {
+    listener.addListener = function (s_listenFor, s_function) {
         if (!this.callObj[s_listenFor])
             this.callObj[s_listenFor] = [];
 
@@ -40,7 +40,7 @@ function JSListener() {
         this.callObj[s_listenFor].push(s_function);
     };
 
-    listener.removeListener = function (s_function, s_listenFor) {
+    listener.removeListener = function (s_listenFor, s_function) {
         for (var i in this.callObj[s_listenFor])
             if (this.callObj[s_listenFor][i] == s_function) {
                 this.callObj[s_listenFor].splice(i, 1);
