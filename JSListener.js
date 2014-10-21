@@ -19,43 +19,47 @@
  */
 
 function JSListener() {
-    var listener = {};
+    var listener = {
+        callObj: {}
+    };
 
-    listener.addListener = function(s_function,s_listenFor)
-    {
-        if(!this[s_listenFor])
-            this[s_listenFor]=[];
+    listener.addListener = function (s_function, s_listenFor) {
+        if (!this.callObj[s_listenFor])
+            this.callObj[s_listenFor] = [];
 
-        if(!s_function)
+        if (!s_function)
         {
             console.error('addListener: Non-existent method specified');
             return;
         }
 
-        for(var i in this[s_listenFor])
-            if(this[s_listenFor][i] == s_function)
+        for (var i in this.callObj[s_listenFor])
+            if (this.callObj[s_listenFor][i] == s_function)
                 return;
 
-        this[s_listenFor].push(s_function);
+        this.callObj[s_listenFor].push(s_function);
     };
 
-    listener.removeListener = function(s_function,s_listenFor)
-    {
-        for(var i in this[s_listenFor])
-            if(this[s_listenFor][i].toString() == s_function.toString())
-                this[s_listenFor].splice(1,i);
+    listener.removeListener = function (s_function, s_listenFor) {
+        for (var i in this.callObj[s_listenFor])
+            if (this.callObj[s_listenFor][i] == s_function) {
+                this.callObj[s_listenFor].splice(i, 1);
+
+                if (this.callObj[s_listenFor].length == 0)
+                    delete this.callObj[s_listenFor];
+
+            }
     };
 
-    listener.callListeners = function(s_identifier)
-    {
-        if(!this[s_identifier])
+    listener.callListeners = function (s_identifier) {
+        if (!this.callObj[s_identifier])
             return;
 
         var args = Array.prototype.slice.call(arguments);
-        var n_length=this[s_identifier].length;
+        var n_length = this.callObj[s_identifier].length;
 
-        for(var i=0;i<n_length;i++)
-            this[s_identifier][i].apply(this,args.slice(1));
+        for (var i = 0; i < n_length; i++)
+            this.callObj[s_identifier][i].apply(this, args.slice(1));
     };
 
     return listener;
