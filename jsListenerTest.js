@@ -25,7 +25,7 @@ jsListener.removeListener(callMe, "someEventMessage");
 //test for failures
 
 if (jsListener.callObj["someEventMessage"].length > 1)
-    console.log("ERROR: removing listener failed");
+    console.error("ERROR: removing listener failed");
 
 if (!called_one || !called_two)
-    console.log("ERROR: function callback miss");
+    console.error("ERROR: function callback miss");
