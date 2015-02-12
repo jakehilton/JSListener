@@ -16,6 +16,9 @@ var jsListener = new JSListener();
 jsListener.addListener("someEventMessage", callMe);
 jsListener.addListener("someEventMessage", callMeAlso);
 
+//add the same listener twice
+jsListener.addListener("someEventMessage", callMeAlso);
+
 //call the listening functions
 jsListener.callListeners("someEventMessage", "some message");
 
@@ -25,7 +28,7 @@ jsListener.removeListener("someEventMessage", callMe);
 //test for failures
 
 if (jsListener.callObj["someEventMessage"].length > 1)
-    console.error("ERROR: removing listener failed");
+    console.error("ERROR: removing listener failed or duplicates incorrectly added");
 
 if (!called_one || !called_two)
     console.error("ERROR: function callback miss");

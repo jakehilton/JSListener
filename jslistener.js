@@ -15,7 +15,7 @@
  You should have received a copy of the GNU General Public License
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
- VERSION: 1.0.0
+ VERSION: 1.0.1
  */
 
 function JSListener() {
@@ -29,7 +29,8 @@ function JSListener() {
 
         if (!s_function)
         {
-            console.error('addListener: Non-existent method specified');
+            if(console && console.error)
+                console.error('addListener: Non-existent method specified');
             return;
         }
 
